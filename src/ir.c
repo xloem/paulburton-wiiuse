@@ -623,10 +623,11 @@ static void reorder_ir_dots(struct ir_dot_t* dot) {
 		dot[i].order = 0;
 
 	for (order = 1; order < 5; ++order) {
-		for (i = 0; i < 4 && (!dot[i].visible || dot[i].order); ++i) {
-			if (i >= 4)
-			return;
-		}
+		i = 0;
+
+		while (!dot[i].visible || dot[i].order)
+		if (++i >= 4)
+				return;
 
 		for (j = 0; j < 4; ++j) {
 			if (dot[j].visible && !dot[j].order && (dot[j].x < dot[i].x))

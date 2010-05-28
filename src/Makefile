@@ -57,6 +57,7 @@ OBJS = \
 	$(OBJ_DIR)/ir.o \
 	$(OBJ_DIR)/nunchuk.o \
 	$(OBJ_DIR)/guitar_hero_3.o \
+	$(OBJ_DIR)/speaker.o \
 	$(OBJ_DIR)/wiiuse.o
 
 ###############################

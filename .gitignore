@@ -4,3 +4,5 @@ example-sdl/debug-*
 example-sdl/release-*
 src/debug-*
 src/release-*
+*.so
+*.o
