@@ -63,8 +63,8 @@ distclean:
 	@-rm -r debug-* release-* 2> /dev/null
 
 install:
-	@if [ -e $(BIN) ]; then \
-		cp -v $(BIN) /usr/bin ; \
+	if [ -e $(BIN) ]; then \
+		cp $(BIN) /usr/bin ; \
 	fi
 
 

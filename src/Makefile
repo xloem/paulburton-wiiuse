@@ -75,10 +75,10 @@ distclean:
 	@-rm -r debug-* release-* 2> /dev/null
 
 install:
-	@if [ -e $(BIN) ]; then \
-		cp -v $(BIN) /usr/lib ; \
+	if [ -e $(BIN) ]; then \
+		cp $(BIN) /usr/lib ; \
 	fi
-	@cp -v wiiuse.h /usr/include
+	cp wiiuse.h /usr/include
 
 $(BIN): mkdir $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $(BIN)
