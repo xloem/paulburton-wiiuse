@@ -16,11 +16,12 @@ byte * wiiuse_convert_wav(const char *path, byte type) {
 }
 
 void wiiuse_mute_speaker(struct wiimote_t *wm, int status) {
+	byte buf;
+
 	if(!wm) {
 		WIIUSE_ERROR("struct wiimote_t not inizialized");
 		return;
 	}
-	byte buf;
 	if(status) {
 		buf = 0x04;
 		if(WIIMOTE_IS_SET(wm, WIIMOTE_STATE_SPEAKER) && !WIIMOTE_IS_SET(wm, WIIMOTE_STATE_SPEAKER_MUTE)) {
@@ -107,13 +108,14 @@ void wiiuse_disable_speaker(struct wiimote_t *wm) {
 }
 
 void wiiuse_set_speaker_freq(struct wiimote_t *wm, int freq) {
+	byte buf;
+
 	if(!wm) return;
 	if(!WIIMOTE_IS_SET(wm, WIIMOTE_STATE_SPEAKER)) {
 		WIIUSE_INFO("speaker not initialized.");
 		return;
 	}
 	
-	byte buf;
 	WIIUSE_DEBUG("writing new freq...");
 	switch(freq) {
 		case 3000:
@@ -139,16 +141,16 @@ void wiiuse_set_speaker_vol(struct wiimote_t *wm, byte vol) {
 }
 
 void wiiuse_play_sound(struct wiimote_t* wm, byte* data, int size) {
+	byte report[21];
+	int offset = 0;
+	int to_be_written, i;
+
 	if(!wm) return;
 	if(!WIIMOTE_IS_SET(wm, WIIMOTE_STATE_SPEAKER)) {
 		WIIUSE_INFO("speaker not initialized.");
 		return;
 	}
 	
-	byte report[21];
-	int offset = 0;
-	int to_be_written, i;
-
 	WIIMOTE_ENABLE_STATE(wm, WIIMOTE_STATE_SPEAKER_PLAYING);	
 	while(offset < size) {
 		if(size - offset > 20)
