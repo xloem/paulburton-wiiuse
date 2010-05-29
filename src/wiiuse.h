@@ -647,7 +647,7 @@ typedef struct wiimote_t {
 	#define WIIUSE_IMPORT_DECL
 #endif
 
-#ifdef WIIUSE_COMPILE_LIB
+#if defined(WIIUSE_COMPILE_LIB) || defined(WIIUSE_EXPORTS)
 	#define WIIUSE_EXPORT WIIUSE_EXPORT_DECL
 #else
 	#define WIIUSE_EXPORT WIIUSE_IMPORT_DECL
